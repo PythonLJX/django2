@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Post,Category
 from markdown import markdown
-
+from django.views.generic import ListView
 from comment.forms import CommentForm
 from django.http import HttpResponse
 
@@ -35,3 +35,13 @@ def category(request,pk):
     cate = get_object_or_404(Category,pk=pk)
     post_list = Post.objects.filter(category=cate)
     return render(request,'blog/index.html',context={'post_list':post_list})
+
+class IndexView(ListView):
+    model = Post
+    template_name = 'blog/index.html'
+    context_object_name = 'post_list'
+
+    paginate_by = 2
+
+
+
