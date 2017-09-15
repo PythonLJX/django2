@@ -54,6 +54,8 @@ class Post(models.Model):#文章
         #使用reverse函数，生成一个url，例如 post / 1
         return reverse('blog:detail',kwargs={'pk':self.pk}) #
 
+
+
     def __str__(self):
         return self.title
 

@@ -39,7 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'comment',
+    'haystack',
 ]
+
+HAYSTACK_CONNECTIONS={
+    'default':{
+        'ENGINE':'blog.whoosh_cn_backend.WhooshEngine',
+        'PATH':os.path.join(BASE_DIR,'whoosh_index'),#存放索引文件的目录
+    },
+}
+
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+#实时更新索引文件，每当更改或者新增一篇文章，就相应地更新索引文件
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
