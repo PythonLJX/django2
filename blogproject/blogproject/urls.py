@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'',include('comment.urls')),
     url(r'^all/rss/$',AllPostRssFeed(),name='rss'),
     url(r'^search/',include('haystack.urls')),
+    url(r'^accounts/',include('users.urls')),
 
 
 ]
